@@ -9,14 +9,14 @@ function Nav() {
             <div className='nav'>
                 <div className='nav__title'>Central Services - Autoclave</div>
                 <div className='nav__links'>
-                    <Link className={`nav__link ${location.pathname === "/cs/load" ? "nav__link--active" : ""}`} 
-                        to="/cs/load">Main</Link>
-                    <Link className={`nav__link ${location.pathname === "/cs/active-loads" ? "nav__link--active" : ""}`} 
-                        to="/cs/active-loads">Active Loads</Link>
-                    <Link className={`nav__link ${location.pathname === "/cs/loads-report" ? "nav__link--active" : ""}`} 
-                        to="/cs/loads-report">Loads Report</Link>
-                    <Link className={`nav__link ${location.pathname === "/cs/search" ? "nav__link--active" : ""}`} 
-                        to="/cs/search">Search</Link>
+                    <Link className={`nav__link ${location.pathname === "/cs/autoclave/load-entry" ? "nav__link--active" : ""}`} 
+                        to="/cs/autoclave/load-entry">Load Entry</Link>
+                    <Link className={`nav__link ${location.pathname === "/cs/autoclave/active-loads" ? "nav__link--active" : ""}`} 
+                        to="/cs/autoclave/active-loads">Active Loads</Link>
+                    <Link className={`nav__link ${location.pathname === "/cs/autoclave/loads-report" ? "nav__link--active" : ""}`} 
+                        to="/cs/autoclave/loads-report">Loads Report</Link>
+                    <Link className={`nav__link ${location.pathname === "/cs/autoclave/search" ? "nav__link--active" : ""}`} 
+                        to="/cs/autoclave/search">Search</Link>
                 </div>
             </div>
         </>
