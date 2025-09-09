@@ -1,9 +1,10 @@
 import './Header.scss'
 
 function Header() {
+
     return (
         <header className='header'>
-            <h1>AlloSource</h1>
+            <img className='header__logo' src='/public/allosource-logo.png' alt='AlloSource Logo' />
         </header>
     )
 }
