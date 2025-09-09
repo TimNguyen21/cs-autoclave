@@ -1,4 +1,4 @@
-import './Header.scss'
+import './Header.scss';
 
 function Header() {
 
@@ -9,4 +9,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Header;

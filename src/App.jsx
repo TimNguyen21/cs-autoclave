@@ -1,8 +1,8 @@
-// import { useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
-import Header from './components/header/Header.jsx'
-import Nav from './components/nav/Nav.jsx'
-import './App.scss'
+// import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import Header from './components/header/Header.jsx';
+import Nav from './components/nav/Nav.jsx';
+import './App.scss';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -24,4 +24,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
