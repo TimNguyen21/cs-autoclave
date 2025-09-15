@@ -5,4 +5,36 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
+
+    &__preview {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ada2a2;
+        border-radius: 7px;
+        background-color: #fff;
+        font-size: 20px;
+        min-width: 300px;
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            font-style: italic;
+        }
+    }
+
+    &__hidden {
+        display: none;
+    }
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+
+        &__preview {
+            margin: 20px 0;
+            padding: 10px 0 10px 10px;
+        }
+    }
 }

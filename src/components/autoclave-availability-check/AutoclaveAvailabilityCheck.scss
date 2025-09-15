@@ -42,10 +42,6 @@
                 margin: 0;
             }
 
-            &[type="number"] {
-                -moz-appearance: textfield;
-            }
-
             &[type="date"] {
                 width: auto;
                 padding: 5px;

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../button/Button';
 import AutoclaveAvailabilityCheck from '../autoclave-availability-check/AutoclaveAvailabilityCheck';
 import AddItemInput from '../add-item-input/AddItemInput';
 import './LoadEntryForm.scss';
 
-function LoadEntryForm() {
+function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     const today = new Date().toISOString().split('T')[0];
     let defaultItemProperties = {
         id: Date.now(),
@@ -25,6 +25,7 @@ function LoadEntryForm() {
         setLoadNumber('');
         setTechnicianId('');
         setIsAutoclaveValid(false);
+        setItemsList([defaultItemProperties]);
     };
 
     const addItem = () => {
@@ -34,6 +35,15 @@ function LoadEntryForm() {
         };
         setItemsList(prev => [...prev, newItem]);
     };
+
+    const createItemSummary = () => {
+        return itemsList.map(item => `${item.name} ${item.quantity === '' ? '' : `x${item.quantity}`}`).join(', ');
+    };
+
+    useEffect(() => {
+        getLoadSummary(createItemSummary());
+        setShowPreview(isAutoclaveValid);
+    }, [itemsList, isAutoclaveValid, setShowPreview]);
 
     const renderItems = () => {
         return itemsList.map((item, index) => {
