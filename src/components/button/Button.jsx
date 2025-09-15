@@ -1,9 +1,10 @@
 import './Button.scss';
 
-function Button({ label, onClick, type = 'button', disabled = false }) {
+function Button({ label, onClick, type = 'button', variant = 'default', disabled = false }) {
+
     return (
         <button
-            className='button'
+            className={`button button__${variant}`}
             onClick={onClick}
             type={type}
             disabled={disabled}

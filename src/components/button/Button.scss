@@ -1,6 +1,4 @@
 .button {
-    background-color: #B5C2DF;
-    color:#4b4b7c;
     width: auto;
     padding: 10px 20px;
     border-radius: 7px;
@@ -9,10 +7,33 @@
     font-weight: 500;
     word-spacing: 1px;
     letter-spacing: 0.5px;
-    box-shadow: 1px 1px 3px rgb(75, 75, 124);
+
+    &__default {
+        background-color: #B5C2DF;
+        color:#4b4b7c;
+        box-shadow: 1px 1px 3px rgb(75, 75, 124);
+    }
+
+    &__cancel {
+        padding: 2px 15px;
+        background-color: #f6f6f6;
+        color:#595963;
+        box-shadow: 1px 1px 3px rgb(127, 127, 147);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
 
     &:active {
         box-shadow: none;
         transform: translateY(2px);
+    }
+
+    &:disabled {
+        background-color: #B5C2DF;
+        color: #9A9A9A;
+        box-shadow: none;
+        cursor: not-allowed;
     }
 }

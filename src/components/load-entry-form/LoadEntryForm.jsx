@@ -28,6 +28,7 @@ function LoadEntryForm() {
                 items inputs here
             </div>
             <div className='load-entry-form__actions'>
+                <Button label='Cancel' variant='cancel' onClick={() => alert('Cancel Load')} />
                 <Button label='Submit Load' onClick={() => alert('Form submitted')} />
             </div>
         </div>
