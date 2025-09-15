@@ -1,0 +1,12 @@
+.load-entry {
+    display: flex;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+
+    &__main {
+        width: 450px;
+    }
+}

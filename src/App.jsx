@@ -2,7 +2,10 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Header from './components/header/Header.jsx';
 import Nav from './components/nav/Nav.jsx';
-import Load_Entry from './containers/load-entry/Load_Entry.jsx';
+import LoadEntry from './containers/load-entry/LoadEntry.jsx';
+import ActiveLoads from './containers/active-loads/ActiveLoads.jsx';
+import LoadsReport from './containers/loads-report/LoadsReport.jsx';
+import Search from './containers/search/Search.jsx';
 import './App.scss';
 
 function App() {
@@ -16,10 +19,10 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/cs/autoclave/load-entry" element={<Load_Entry />} />
-        <Route path="/cs/autoclave/active-loads" element={<div>Active Loads</div>} />
-        <Route path="/cs/autoclave/loads-report" element={<div>Loads Report</div>} />
-        <Route path="/cs/autoclave/search" element={<div>Search</div>} />
+        <Route path="/cs/autoclave/load-entry" element={<LoadEntry />} />
+        <Route path="/cs/autoclave/active-loads" element={<ActiveLoads />} />
+        <Route path="/cs/autoclave/loads-report" element={<LoadsReport />} />
+        <Route path="/cs/autoclave/search" element={<Search />} />
       </Routes>
     </>
   )
