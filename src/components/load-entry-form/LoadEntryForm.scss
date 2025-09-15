@@ -3,12 +3,31 @@
     border-radius: 7px;
     margin: 5px;
     padding: 15px 0;
+    width: 500px;
 
-    &__items-entry {
-        border-bottom: 3px dotted #4b4b7c;
-        border-top: 3px dotted #4b4b7c;
-        padding: 20px;
-        margin-top: 7px;
+    &__items {
+        &-header {
+            margin-bottom: 7px;
+
+            &-name {
+                display: inline-block;
+                margin-right: 50px;
+                width: 270px;
+            }
+
+            &-quantity {
+                display: inline-block;
+                margin-right: 50px;
+                width: 25px;
+            }
+        }
+
+        &-entry {
+            border-bottom: 3px dotted #4b4b7c;
+            border-top: 3px dotted #4b4b7c;
+            padding: 20px;
+            margin-top: 7px;
+        }
     }
 
     &__actions {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../button/Button';
 import AutoclaveAvailabilityCheck from '../autoclave-availability-check/AutoclaveAvailabilityCheck';
+import AddItemInput from '../add-item-input/AddItemInput';
 import './LoadEntryForm.scss';
 
 function LoadEntryForm() {
@@ -26,9 +27,26 @@ function LoadEntryForm() {
         setIsAutoclaveValid(false);
     };
 
+    const addItem = () => {
+        const newItem = {
+            ...defaultItemProperties,
+            id: Date.now(),
+        };
+        setItemsList(prev => [...prev, newItem]);
+    };
+
     const renderItems = () => {
         return itemsList.map((item, index) => {
-            return <div key={item.id}>{`${item.id} ${item.name} - Qty: ${item.quantity}`}</div>
+            return <AddItemInput
+                key={item.id}
+                item={item}
+                updateItem={(id, updatedItem) => {
+                    setItemsList(prev => prev.map(item => item.id === id ? updatedItem : item));
+                }}
+                removeItem={(id) => {
+                    setItemsList(prev => prev.filter(item => item.id !== id));
+                }}
+            />;
         });
     };
 
@@ -49,7 +67,13 @@ function LoadEntryForm() {
                 />
             </div>
             <div className={`${isAutoclaveValid ? 'load-entry-form__items-entry' : 'load-entry-form__hidden'}`}>
+                <div className='load-entry-form__items-header'>
+                    <span className='load-entry-form__items-header-name'>Items:</span>
+                    <span className='load-entry-form__items-header-quantity'>Quantity:</span>
+                    <span className='load-entry-form__items-header-remove'>Remove</span>
+                </div>
                 {renderItems()}
+                <Button label='Add Item' onClick={addItem} />
             </div>
             <div className={`${isAutoclaveValid ? 'load-entry-form__actions' : 'load-entry-form__hidden'}`}>
                 <Button label='Cancel' variant='cancel' onClick={clearForm} />
