@@ -37,7 +37,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     };
 
     const createItemSummary = () => {
-        return itemsList.map(item => `${item.name} ${item.quantity === '' ? '' : `x${item.quantity}`}`).join(', ');
+        return itemsList.map(item => `${item.name}${item.quantity === '' ? '' : ` (x${item.quantity})`}`).join(', ');
     };
 
     useEffect(() => {
