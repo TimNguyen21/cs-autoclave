@@ -1,0 +1,18 @@
+.button {
+    background-color: #B5C2DF;
+    color:rgb(75, 75, 124);
+    width: auto;
+    padding: 10px 20px;
+    border-radius: 7px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    word-spacing: 1px;
+    letter-spacing: 0.5px;
+    box-shadow: 1px 1px 3px rgb(75, 75, 124);
+
+    &:active {
+        box-shadow: none;
+        transform: translateY(2px);
+    }
+}

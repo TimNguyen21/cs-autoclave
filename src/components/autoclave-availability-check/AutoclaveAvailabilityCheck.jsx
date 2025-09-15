@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import { useState } from 'react';
+import Button from '../button/Button';
 import './AutoclaveAvailabilityCheck.scss';
 
 function AutoclaveAvailabilityCheck() {
@@ -54,6 +54,9 @@ function AutoclaveAvailabilityCheck() {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
+            </div>
+            <div className='autoclave-availability-check__actions'>
+                <Button label='Confirm Load Availability' onClick={() => alert(`${date}, ${autoclaveNumber}, ${loadNumber}, ${technicianId}`)} />
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 .autoclave-availability-check {
     padding: 10px 0 5px 0;
+    font-size: 18px;
 
     &__input {
 
@@ -44,5 +45,11 @@
                 padding: 5px;
             }
         }
+    }
+
+    &__actions {
+        display: flex;
+        margin: 10px 15px 5px 0;
+        justify-content: flex-end;
     }
 }
