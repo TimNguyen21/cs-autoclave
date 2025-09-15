@@ -8,6 +8,7 @@
         border-bottom: 3px dotted #4b4b7c;
         border-top: 3px dotted #4b4b7c;
         padding: 20px;
+        margin-top: 7px;
     }
 
     &__actions {
@@ -15,5 +16,9 @@
         justify-content: flex-end;
         margin: 15px 15px 0 0;
         gap: 25px;
+    }
+
+    &__hidden {
+        display: none;
     }
 }

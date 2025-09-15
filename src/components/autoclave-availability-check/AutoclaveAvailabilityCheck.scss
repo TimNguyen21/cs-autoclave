@@ -16,6 +16,12 @@
             border: none;
             border-radius: 7px;
             padding: 2px 7px;
+
+            &:disabled {
+                background-color: white;
+                color: darkgray;
+                cursor: not-allowed;
+            }
         }
 
         input {
@@ -44,12 +50,18 @@
                 width: auto;
                 padding: 5px;
             }
+
+            &:disabled {
+                background-color: white;
+                color: darkgray;
+                cursor: not-allowed;
+            }
         }
     }
 
     &__actions {
         display: flex;
-        margin: 10px 15px 10px 0;
+        margin: 10px 15px 0 0;
         justify-content: flex-end;
     }
 }

@@ -1,8 +1,18 @@
-import { useState } from 'react';
 import Button from '../button/Button';
 import './AutoclaveAvailabilityCheck.scss';
 
-function AutoclaveAvailabilityCheck(props) {
+function AutoclaveAvailabilityCheck({
+    date,
+    autoclaveNumber,
+    loadNumber,
+    technicianId,
+    isAutoclaveValid,
+    setIsAutoclaveValid,
+    setDate,
+    setAutoclaveNumber,
+    setLoadNumber,
+    setTechnicianId
+}) {
 
     return (
         <div className='autoclave-availability-check'>
@@ -10,8 +20,9 @@ function AutoclaveAvailabilityCheck(props) {
                 <label>Autoclave #:</label>
                 <select
                     id='autoclave-number'
-                    value={props.autoclaveNumber}
-                    onChange={(e) => props.setAutoclaveNumber(e.target.value)}
+                    value={autoclaveNumber}
+                    onChange={(e) => setAutoclaveNumber(e.target.value)}
+                    disabled={isAutoclaveValid}
                 >
                     <option value='' selected disabled></option>
                     <option value='1'>1</option>
@@ -25,8 +36,9 @@ function AutoclaveAvailabilityCheck(props) {
                     id='load-number'
                     type='number'
                     min='0'
-                    value={props.loadNumber}
-                    onChange={(e) => props.setLoadNumber(e.target.value)}
+                    value={loadNumber}
+                    onChange={(e) => setLoadNumber(e.target.value)}
+                    disabled={isAutoclaveValid}
                 />
             </div>
             <div className='autoclave-availability-check__input'>
@@ -35,8 +47,9 @@ function AutoclaveAvailabilityCheck(props) {
                     id='technician-id'
                     type='number'
                     min='0'
-                    value={props.technicianId}
-                    onChange={(e) => props.setTechnicianId(e.target.value)}
+                    value={technicianId}
+                    onChange={(e) => setTechnicianId(e.target.value)}
+                    disabled={isAutoclaveValid}
                 />
             </div>
             <div className='autoclave-availability-check__input'>
@@ -45,12 +58,17 @@ function AutoclaveAvailabilityCheck(props) {
                     id='date'
                     type='date'
                     min='0'
-                    value={props.date}
-                    onChange={(e) => props.setDate(e.target.value)}
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    disabled={isAutoclaveValid}
                 />
             </div>
             <div className='autoclave-availability-check__actions'>
-                <Button label='Confirm Load Availability' onClick={() => alert(`${props.date}, ${props.autoclaveNumber}, ${props.loadNumber}, ${props.technicianId}`)} />
+                <Button
+                    label='Confirm Load Availability'
+                    onClick={() => setIsAutoclaveValid(true)}
+                    disabled={isAutoclaveValid}
+                />
             </div>
         </div>
     )
