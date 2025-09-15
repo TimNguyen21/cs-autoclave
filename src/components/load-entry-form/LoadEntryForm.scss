@@ -2,5 +2,17 @@
     background-color: #D9D9D9;
     border-radius: 7px;
     margin: 5px;
-    padding: 5px;
+    padding: 15px 0;
+
+    &__items-entry {
+        border-bottom: 3px dotted #4b4b7c;
+        border-top: 3px dotted #4b4b7c;
+        padding: 20px;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        margin: 15px 15px 0 0;
+    }
 }
