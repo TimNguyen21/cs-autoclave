@@ -119,7 +119,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
                             technicianId,
                             items: createItemSummary(),
                             technicianSignoffId: null,
-                            passStatus: null,
+                            loadStatus: null,
                             notes: [],
                         }));
                 }}

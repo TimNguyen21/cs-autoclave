@@ -9,8 +9,24 @@ const autoclaveLoadsSlice = createSlice({
     addLoad: (state, action) => {
       state.autoclaveLoads.push(action.payload);
     },
+    updateLoadStatus: (state, action) => {
+      const { id, loadStatus } = action.payload;
+      const load = state.autoclaveLoads.find(load => load.id === id);
+
+      if (load) {
+        load.loadStatus = loadStatus;
+      }
+    },
+    addNote: (state, action) => {
+      const { id, note } = action.payload;
+      const load = state.autoclaveLoads.find(load => load.id === id);
+      
+      if (load) {
+        load.notes.push(note);
+      }
+    }
   },
 });
 
-export const { addLoad } = autoclaveLoadsSlice.actions;
+export const { addLoad, updateLoadStatus, addNote } = autoclaveLoadsSlice.actions;
 export default autoclaveLoadsSlice.reducer;
