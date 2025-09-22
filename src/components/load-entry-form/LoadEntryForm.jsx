@@ -3,6 +3,8 @@ import Button from '../button/Button';
 import AutoclaveAvailabilityCheck from '../autoclave-availability-check/AutoclaveAvailabilityCheck';
 import AddItemInput from '../add-item-input/AddItemInput';
 import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
+import { useDispatch } from 'react-redux';
+import { addLoad } from '../../features/autoclave-loads/autoclaveLoadsSlice';
 import './LoadEntryForm.scss';
 
 function LoadEntryForm({ getLoadSummary, setShowPreview }) {
@@ -20,6 +22,8 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     const [isAutoclaveValid, setIsAutoclaveValid] = useState(false);
     const [itemsList, setItemsList] = useState([defaultItemProperties]);
     const [showPopupConfirmation, setShowPopupConfirmation] = useState(false);
+
+    const dispatch = useDispatch();
 
     const clearForm = () => {
         setDate(today);
@@ -41,6 +45,12 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     const createItemSummary = () => {
         return itemsList.map(item => `${item.name}${item.quantity === '' ? '' : ` (x${item.quantity})`}`).join(', ');
     };
+
+    const formatDate = (dateStr) => {
+        const [year, month, day] = dateStr.split("-");
+
+        return `${month}${day}${year}`;
+    }
 
     useEffect(() => {
         getLoadSummary(createItemSummary());
@@ -100,6 +110,18 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
                 onConfirm={() => {
                     clearForm();
                     setShowPopupConfirmation(false);
+                    dispatch(
+                        addLoad({
+                            loadId: `AUT${autoclaveNumber}-L${loadNumber}-${formatDate(date)}`,
+                            date,
+                            autoclaveNumber,
+                            loadNumber,
+                            technicianId,
+                            items: createItemSummary(),
+                            technicianSignoffId: null,
+                            passStatus: null,
+                            notes: [],
+                        }));
                 }}
                 onCancel={() => {
                     setShowPopupConfirmation(false);
