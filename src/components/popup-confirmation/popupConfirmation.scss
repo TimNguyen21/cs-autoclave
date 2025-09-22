@@ -1,0 +1,23 @@
+.popup-confirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f2f0f0;
+    border: 1px solid #938888;
+    border-radius: 7px;
+    box-shadow: 1px 1px 1px #938888;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.popup-confirmation__message {
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.popup-confirmation__actions {
+    display: flex;
+    justify-content: space-around;
+}

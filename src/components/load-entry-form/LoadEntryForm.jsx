@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from '../button/Button';
 import AutoclaveAvailabilityCheck from '../autoclave-availability-check/AutoclaveAvailabilityCheck';
 import AddItemInput from '../add-item-input/AddItemInput';
+import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
 import './LoadEntryForm.scss';
 
 function LoadEntryForm({ getLoadSummary, setShowPreview }) {
@@ -18,6 +19,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     const [technicianId, setTechnicianId] = useState('');
     const [isAutoclaveValid, setIsAutoclaveValid] = useState(false);
     const [itemsList, setItemsList] = useState([defaultItemProperties]);
+    const [showPopupConfirmation, setShowPopupConfirmation] = useState(false);
 
     const clearForm = () => {
         setDate(today);
@@ -86,9 +88,23 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
                 <Button label='Add Item' onClick={addItem} />
             </div>
             <div className={`${isAutoclaveValid ? 'load-entry-form__actions' : 'load-entry-form__hidden'}`}>
-                <Button label='Cancel' variant='cancel' onClick={clearForm} />
-                <Button label='Submit Load' onClick={() => alert('Form submitted')} />
+                <Button label='Cancel'
+                        variant='cancel'
+                        onClick={clearForm} />
+                <Button label='Submit Load'
+                        onClick={() => {setShowPopupConfirmation(true);}} />
             </div>
+            <PopupConfirmation
+                message="Are you sure you want to submit the load? Autoclave load confirmation cannot be undone once submitted."
+                confirmButtonLabel='Submit'
+                onConfirm={() => {
+                    clearForm();
+                    setShowPopupConfirmation(false);
+                }}
+                onCancel={() => {
+                    setShowPopupConfirmation(false);
+                }}
+                open={showPopupConfirmation} />
         </div>
     )
 }
