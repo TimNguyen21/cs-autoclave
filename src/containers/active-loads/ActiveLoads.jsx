@@ -16,9 +16,9 @@ function ActiveLoads() {
         }
 
         return activeLoads.map(load => (
-            <div key={load.loadId} 
-                 id={load.loadId} 
-                 onClick={(e) => alert(`${e.target.id}`)} 
+            <div key={load.loadId}
+                 id={load.loadId}
+                 onClick={(e) => alert(`${e.target.id}, Summary: ${load.items}`)}
                  className="active-loads__load-link"
             >Autoclave ID: {load.loadId}, Autoclave #{load.autoclaveNumber}, Load #{load.loadNumber}
                 {/* <h3>Load ID: {load.loadId}</h3>
