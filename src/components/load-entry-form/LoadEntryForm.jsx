@@ -22,6 +22,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     const [isAutoclaveValid, setIsAutoclaveValid] = useState(false);
     const [itemsList, setItemsList] = useState([defaultItemProperties]);
     const [showPopupConfirmation, setShowPopupConfirmation] = useState(false);
+    const [showSuccessfulPopupConfirmation, setShowSuccessfulPopupConfirmation] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -50,6 +51,18 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
         const [year, month, day] = dateStr.split("-");
 
         return `${month}${day}${year}`;
+    }
+
+    const createLoadId = () => {
+        const addLeadingZero = (number) => {
+            // Convert the number to a string
+            const numberString = number.toString();
+
+            // Use padStart to ensure a minimum length of 2, padding with '0'
+            return numberString.padStart(2, '0');
+        }
+
+        return `AUT${addLeadingZero(autoclaveNumber)}-L${addLeadingZero(loadNumber)}-${formatDate(date)}`;
     }
 
     useEffect(() => {
@@ -108,11 +121,10 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
                 message="Are you sure you want to submit the load? Autoclave load confirmation cannot be undone once submitted."
                 confirmButtonLabel='Submit'
                 onConfirm={() => {
-                    clearForm();
                     setShowPopupConfirmation(false);
                     dispatch(
                         addLoad({
-                            loadId: `AUT${autoclaveNumber}-L${loadNumber}-${formatDate(date)}`,
+                            loadId: createLoadId(),
                             date,
                             autoclaveNumber,
                             loadNumber,
@@ -122,11 +134,21 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
                             loadStatus: null,
                             notes: [],
                         }));
+                    setShowSuccessfulPopupConfirmation(true);
                 }}
                 onCancel={() => {
                     setShowPopupConfirmation(false);
                 }}
                 open={showPopupConfirmation} />
+            <PopupConfirmation
+                message={`Autoclave load have been submitted successfully. Load ID is: ${createLoadId()}.`}
+                onConfirm={() => {
+                    setShowSuccessfulPopupConfirmation(false)
+                    clearForm();
+                }}
+                confirmButtonLabel='OK'
+                open={showSuccessfulPopupConfirmation}
+            />
         </div>
     )
 }
