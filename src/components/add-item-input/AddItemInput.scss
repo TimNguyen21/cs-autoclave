@@ -15,11 +15,16 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
     }
 
     &__name {
         border: none;
         width: 280px;
+        text-transform: capitalize;
     }
 
     &__quantity {
