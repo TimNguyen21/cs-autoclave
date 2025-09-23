@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Button from '../button/Button';
+import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
 import './AutoclaveAvailabilityCheck.scss';
 
 function AutoclaveAvailabilityCheck({
@@ -11,27 +13,60 @@ function AutoclaveAvailabilityCheck({
     setDate,
     setAutoclaveNumber,
     setLoadNumber,
-    setTechnicianId
+    setTechnicianId,
 }) {
+
+    const [autoclaveConfirmationEmptyInput, setAutoclaveConfirmationEmptyInput] = useState({
+        autoclaveNumber: false,
+        loadNumber: false,
+        technicianId: false,
+        date: false,
+    });
+
+    const [showPopupConfirmation, setShowPopupConfirmation] = useState(false);
+
+    const formHasEmptyInput = () => {
+        const inputFields = { autoclaveNumber, loadNumber, technicianId, date };
+
+        // Build an object of empty states
+        const emptyInputs = Object.fromEntries(
+            Object.entries(inputFields).map(([key, value]) => [key, value.trim() === ""])
+        );
+
+        // Update state in one go
+        setAutoclaveConfirmationEmptyInput(emptyInputs);
+
+        // Return whether any field is empty
+        return Object.values(emptyInputs).some(Boolean);
+    }
+
+    const checkAutoclaveAvailability = () => {
+        if (!formHasEmptyInput()) {
+            setIsAutoclaveValid(true);
+        } else {
+            setShowPopupConfirmation(true);
+        }
+    }
 
     return (
         <div className='autoclave-availability-check'>
             <div className='autoclave-availability-check__input'>
-                <label>Autoclave #:</label>
+                <label className={autoclaveConfirmationEmptyInput.autoclaveNumber ? 'autoclave-availability-check__input--error' : ''}>Autoclave #:</label>
                 <select
                     id='autoclave-number'
                     value={autoclaveNumber}
                     onChange={(e) => setAutoclaveNumber(e.target.value)}
                     disabled={isAutoclaveValid}
                 >
-                    <option value='' selected disabled></option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
+                    <option defaultValue='' disabled></option>
+                    <option value='9'>9</option>
+                    <option value='12'>12</option>
+                    <option value='14'>14</option>
+                    <option value='15'>15</option>
                 </select>
             </div>
             <div className='autoclave-availability-check__input'>
-                <label>Load #:</label>
+                <label className={autoclaveConfirmationEmptyInput.loadNumber ? 'autoclave-availability-check__input--error' : ''}>Load #:</label>
                 <input
                     id='load-number'
                     type='number'
@@ -42,7 +77,7 @@ function AutoclaveAvailabilityCheck({
                 />
             </div>
             <div className='autoclave-availability-check__input'>
-                <label>Technician ID:</label>
+                <label className={autoclaveConfirmationEmptyInput.technicianId ? 'autoclave-availability-check__input--error' : ''}>Technician ID:</label>
                 <input
                     id='technician-id'
                     type='number'
@@ -66,10 +101,16 @@ function AutoclaveAvailabilityCheck({
             <div className='autoclave-availability-check__actions'>
                 <Button
                     label='Confirm Load Availability'
-                    onClick={() => setIsAutoclaveValid(true)}
+                    onClick={checkAutoclaveAvailability}
                     disabled={isAutoclaveValid}
                 />
             </div>
+            <PopupConfirmation
+                message='Please fill in all required fields.'
+                onConfirm={() => setShowPopupConfirmation(false)}
+                confirmButtonLabel='OK'
+                open={showPopupConfirmation}
+            />
         </div>
     )
 }

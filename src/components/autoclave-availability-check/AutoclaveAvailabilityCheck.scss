@@ -16,6 +16,7 @@
             border: none;
             border-radius: 7px;
             padding: 2px 7px;
+            text-align: center;
 
             &:disabled {
                 background-color: white;
@@ -52,6 +53,11 @@
                 color: darkgray;
                 cursor: not-allowed;
             }
+        }
+
+        &--error {
+            color: red;
+            font-style: italic;
         }
     }
 
