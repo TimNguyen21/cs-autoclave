@@ -1,7 +1,11 @@
-import './LoadCompletionConfirmation.scss';
+import { useState } from 'react';
 import Button from '../button/Button';
+import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
+import './LoadCompletionConfirmation.scss';
 
 function LoadCompletionConfirmation({ cancelLoadConfirmation }) {
+
+    const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
 
     return (
         <div className="load-completion-confirmation">
@@ -26,8 +30,18 @@ function LoadCompletionConfirmation({ cancelLoadConfirmation }) {
             </div>
             <div className='load-completion-confirmation__button-actions'>
                 <Button label="Cancel" variant="cancel" onClick={cancelLoadConfirmation} />
-                <Button label="Confirm Load Completion" onClick={() => alert('Complete Load Clicked')} />
+                <Button label="Confirm Load Completion" onClick={() => setShowConfirmationPopup(true)} />
             </div>
+            <PopupConfirmation
+            message={"Are you sure you want to complete this load?"}
+                confirmButtonLabel="Yes, Complete Load"
+                onConfirm={() => {
+                    setShowConfirmationPopup(false);
+                    cancelLoadConfirmation();
+                }}
+                cancelButtonLabel="No, Go Back"
+                onCancel={() => setShowConfirmationPopup(false)}
+                open={showConfirmationPopup}/>
         </div>
     );
 }   
