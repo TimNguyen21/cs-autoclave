@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadSummary from '../../components/load-summary/LoadSummary';
+import { formatDateMMDDYYYYWithSlash } from '../../utils/dateUtils';
 import './ActiveLoads.scss';
 
 function ActiveLoads() {
@@ -28,13 +29,7 @@ function ActiveLoads() {
                  id={load.loadId}
                  onClick={(e) => setSelectedLoad(getSelectedLoadInfo(e.currentTarget.id))}
                  className="active-loads__load-link"
-            >Autoclave ID: {load.loadId}, Autoclave #{load.autoclaveNumber}, Load #{load.loadNumber}
-                {/* <h3>Load ID: {load.loadId}</h3>
-                <p>Status: {load.passStatus}</p>
-                <p>Technician ID: {load.technicianId}</p>
-                <p>Date: {load.date}</p>
-                <p>Items: {load.items}</p>
-                <p>Notes: {load.notes.join(', ')}</p> */}
+            >Date: {formatDateMMDDYYYYWithSlash(load.date)}, Autoclave #{load.autoclaveNumber}, Load #{load.loadNumber} {`(ID: ${load.loadId})`}
             </div>
         ));
     }

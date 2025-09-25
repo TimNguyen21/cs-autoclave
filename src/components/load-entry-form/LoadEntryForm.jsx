@@ -3,6 +3,7 @@ import Button from '../button/Button';
 import AutoclaveAvailabilityCheck from '../autoclave-availability-check/AutoclaveAvailabilityCheck';
 import AddItemInput from '../add-item-input/AddItemInput';
 import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
+import { formatDateMMDDYYYY } from '../../utils/dateUtils';
 import { useDispatch } from 'react-redux';
 import { addLoad } from '../../features/autoclave-loads/autoclaveLoadsSlice';
 import './LoadEntryForm.scss';
@@ -47,12 +48,6 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
         return itemsList.map(item => `${item.name}${item.quantity === '' ? '' : ` (x${item.quantity})`}`).join(', ');
     };
 
-    const formatDate = (dateStr) => {
-        const [year, month, day] = dateStr.split("-");
-
-        return `${month}${day}${year}`;
-    }
-
     const createLoadId = () => {
         const addLeadingZero = (number) => {
             // Convert the number to a string
@@ -62,7 +57,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
             return numberString.padStart(2, '0');
         }
 
-        return `AUT${addLeadingZero(autoclaveNumber)}-L${addLeadingZero(loadNumber)}-${formatDate(date)}`;
+        return `AUT${addLeadingZero(autoclaveNumber)}-L${addLeadingZero(loadNumber)}-${formatDateMMDDYYYY(date)}`;
     }
 
     useEffect(() => {
