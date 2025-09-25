@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadSummary from '../../components/load-summary/LoadSummary';
+import LoadCompletionConfirmation from '../../components/load-completion-confirmation/LoadCompletionConfirmation';
 import { formatDateMMDDYYYYWithSlash } from '../../utils/dateUtils';
 import './ActiveLoads.scss';
 
@@ -39,6 +40,7 @@ function ActiveLoads() {
             <h3>* Click on autoclave load to open load summary *</h3>
             {renderActiveLoads()}
             {selectedLoad ? <LoadSummary load={selectedLoad} /> : ''}
+            {selectedLoad ? <LoadCompletionConfirmation cancelLoadConfirmation={() => setSelectedLoad(null)} /> : ''}
             {/* {JSON.stringify(autoclaveLoads)} */}
         </main>
     )
