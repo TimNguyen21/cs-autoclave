@@ -12,7 +12,7 @@ function ActiveLoads() {
     const [selectedLoad, setSelectedLoad] = useState(null);
 
     const getActiveLoads = () => {
-        return autoclaveLoads.filter(load => load.loadStatus === null || load.loadStatus === '');
+        return autoclaveLoads.filter(load => load.passStatus === null || load.passStatus === '');
     }
 
     const getSelectedLoadInfo = (loadId) => {
