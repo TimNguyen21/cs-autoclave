@@ -12,7 +12,7 @@ function ActiveLoads() {
     const [selectedLoad, setSelectedLoad] = useState(null);
 
     const getActiveLoads = () => {
-        return autoclaveLoads.filter(load => load.loadStatus === null);
+        return autoclaveLoads.filter(load => load.loadStatus === null || load.loadStatus === '');
     }
 
     const getSelectedLoadInfo = (loadId) => {
@@ -39,8 +39,8 @@ function ActiveLoads() {
         <main className='active-loads'>
             <h3>* Click on autoclave load to open load summary *</h3>
             {renderActiveLoads()}
-            {selectedLoad ? <LoadSummary load={selectedLoad} /> : ''}
-            {selectedLoad ? <LoadCompletionConfirmation cancelLoadConfirmation={() => setSelectedLoad(null)} /> : ''}
+            {selectedLoad ? <LoadSummary loadData={selectedLoad} /> : ''}
+            {selectedLoad ? <LoadCompletionConfirmation loadId={selectedLoad.loadId} cancelLoadConfirmation={() => setSelectedLoad(null)} /> : ''}
             {/* {JSON.stringify(autoclaveLoads)} */}
         </main>
     )

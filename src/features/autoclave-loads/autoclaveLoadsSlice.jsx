@@ -7,19 +7,25 @@ const autoclaveLoadsSlice = createSlice({
   },
   reducers: {
     addLoad: (state, action) => {
+      // action.payload { loadId, date, autoclaveNumber, loadNumber, technicianId, items, technicianSignoffId, passStatus, notes: [] }
       state.autoclaveLoads.push(action.payload);
     },
-    updateLoadStatus: (state, action) => {
-      const { id, loadStatus } = action.payload;
-      const load = state.autoclaveLoads.find(load => load.id === id);
+    confirmLoadCompletion: (state, action) => {
+      const { loadId, passStatus, note, technicianSignoffId } = action.payload;
+      const load = state.autoclaveLoads.find(load => load.loadId === loadId);
 
       if (load) {
-        load.loadStatus = loadStatus;
+        load.passStatus = passStatus;
+        load.technicianSignoffId = technicianSignoffId;
+
+        if (note) {
+          load.notes.push(note);
+        }
       }
     },
     addNote: (state, action) => {
-      const { id, note } = action.payload;
-      const load = state.autoclaveLoads.find(load => load.id === id);
+      const { loadId, note } = action.payload;
+      const load = state.autoclaveLoads.find(load => load.loadId === loadId);
       
       if (load) {
         load.notes.push(note);
@@ -28,5 +34,5 @@ const autoclaveLoadsSlice = createSlice({
   },
 });
 
-export const { addLoad, updateLoadStatus, addNote } = autoclaveLoadsSlice.actions;
+export const { addLoad, confirmLoadCompletion, addNote } = autoclaveLoadsSlice.actions;
 export default autoclaveLoadsSlice.reducer;

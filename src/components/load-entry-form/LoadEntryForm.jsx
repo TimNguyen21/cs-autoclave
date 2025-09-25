@@ -3,20 +3,19 @@ import Button from '../button/Button';
 import AutoclaveAvailabilityCheck from '../autoclave-availability-check/AutoclaveAvailabilityCheck';
 import AddItemInput from '../add-item-input/AddItemInput';
 import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
-import { formatDateMMDDYYYY } from '../../utils/dateUtils';
+import { formatDateMMDDYYYY, currentDateYYYYMMDD } from '../../utils/dateUtils';
 import { useDispatch } from 'react-redux';
 import { addLoad } from '../../features/autoclave-loads/autoclaveLoadsSlice';
 import './LoadEntryForm.scss';
 
 function LoadEntryForm({ getLoadSummary, setShowPreview }) {
-    const today = new Date().toISOString().split('T')[0];
     let defaultItemProperties = {
         id: Date.now(),
         name: '',
         quantity: '',
     }
 
-    const [date, setDate] = useState(today);
+    const [date, setDate] = useState(currentDateYYYYMMDD);
     const [autoclaveNumber, setAutoclaveNumber] = useState('');
     const [loadNumber, setLoadNumber] = useState('');
     const [technicianId, setTechnicianId] = useState('');
@@ -28,7 +27,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
     const dispatch = useDispatch();
 
     const clearForm = () => {
-        setDate(today);
+        setDate(currentDateYYYYMMDD);
         setAutoclaveNumber('');
         setLoadNumber('');
         setTechnicianId('');
@@ -126,7 +125,7 @@ function LoadEntryForm({ getLoadSummary, setShowPreview }) {
                             technicianId,
                             items: createItemSummary(),
                             technicianSignoffId: null,
-                            loadStatus: null,
+                            passStatus: null,
                             notes: [],
                         }));
                     setShowSuccessfulPopupConfirmation(true);

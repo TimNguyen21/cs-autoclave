@@ -12,5 +12,11 @@ const formatDateMMDDYYYYWithSlash = (dateStr) => {
     return `${month}/${day}/${year}`;
 }
 
+const currentDateYYYYMMDD = () => {
+    //return current date format of "YYYY-MM-DD"
+    const today = new Date().toISOString().split('T')[0];
+    return today;
+}
 
-export { formatDateMMDDYYYY, formatDateMMDDYYYYWithSlash };
+
+export { formatDateMMDDYYYY, formatDateMMDDYYYYWithSlash, currentDateYYYYMMDD };
