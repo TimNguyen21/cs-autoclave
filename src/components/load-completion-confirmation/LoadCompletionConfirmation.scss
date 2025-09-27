@@ -5,10 +5,6 @@
         font-weight: bold;
     }
 
-    span {
-        font-weight: normal;
-    }
-
     &__input {
         &-pass-status {
             margin-bottom: 7px;
@@ -30,12 +26,14 @@
 
             span {
                 font-size: 13px;
+                font-weight: normal;
             }
 
             textarea {
                 border-radius: 7px;
                 padding: 5px 10px;
                 height: 60px;
+                resize: none;
             }
         }
 
