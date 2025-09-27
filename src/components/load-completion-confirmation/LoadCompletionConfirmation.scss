@@ -38,6 +38,14 @@
                 width: 100px;
             }
         }
+
+        &-has-error {
+            border: 1px solid red;
+
+            &[type="number"] {
+                border: 1px solid red;
+            }
+        }
     }
 
     &__button-actions {
