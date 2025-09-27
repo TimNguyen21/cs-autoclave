@@ -15,15 +15,8 @@ function LoadsReport() {
     const [validLoadsReportQuery, setValidLoadsReportQuery] = useState(true);
 
     const getFilteredLoads = (date, autoclaveNumber) => {
-        let filteredLoads;
-
-        if (autoclaveNumber === 'all') {
-            filteredLoads = loadsData.filter((load) => load.date === date);
-        } else {
-            filteredLoads = loadsData.filter((load) => load.date === date && load.autoclaveNumber.toString() === autoclaveNumber.toString());
-        }
-
-        return filteredLoads;
+        return (autoclaveNumber === 'all') ? loadsData.filter((load) => load.date === date)
+                                        : loadsData.filter((load) => load.date === date && load.autoclaveNumber.toString() === autoclaveNumber.toString());
     }
 
     const renderLoadsReport = () => {
