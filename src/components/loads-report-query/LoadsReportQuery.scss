@@ -11,6 +11,7 @@
         }
 
         &-date {
+            width: 110px;
             border-radius: 7px;
             text-align: center;
             padding: 2px 5px;
@@ -25,6 +26,8 @@
     }
 
     &__button-actions {
+        display: flex;
+        gap: 12px;
         padding-left: 7px;
     }
 }
