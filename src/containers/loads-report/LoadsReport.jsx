@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadsReportQuery from '../../components/loads-report-query/LoadsReportQuery';
+import LoadsReportSummary from '../../components/loads-report-summary/LoadsReportSummary';
+import Button from '../../components/button/Button';
 import './LoadsReport.scss';
 
 function LoadsReport() {
@@ -23,11 +25,9 @@ function LoadsReport() {
             return <div>No loads found for the selected criteria.</div>;
         }
 
-        return filteredLoads.map((load) => (
-            <div key={load.loadId}>
-                {load.loadId} - {load.date} - {load.autoclaveNumber} - {load.loadNumber}
-            </div>
-        ));
+        return <LoadsReportSummary date={date}
+                                   autoclaveNumber={autoclaveNumber}
+                                   loadsData={filteredLoads} />
     }
 
     return (
@@ -41,8 +41,11 @@ function LoadsReport() {
                                       showLoadsReportResults={showLoadsReportResults}
                                       setLoadsReportResults={setLoadsReportResults} />
                 </div>
-                <div className={`loads-report__summary-results ${showLoadsReportResults ? 'loads-report__border-divider' : ''}`}>
+                <div className={`${showLoadsReportResults ? 'loads-report__summary-results loads-report__border-divider' : ''}`}>
                     {showLoadsReportResults ? renderLoadsReport(selectedQueryDate, selectedQueryAutoclaveNumber) : null}
+                </div>
+                <div className={`${showLoadsReportResults ? 'loads-report__summary-actions' : ''}`}>
+                    {showLoadsReportResults ? <Button label="Print Report" onClick={() => alert('Print Report')} /> : null}
                 </div>
             </div>
         </main>

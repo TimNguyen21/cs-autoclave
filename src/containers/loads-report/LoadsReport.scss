@@ -16,10 +16,17 @@
     }
 
     &__summary-results {
-        padding: 15px;
+        padding: 15px 25px 0 25px;
+    }
+
+    &__summary-actions {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 25px;
+        margin-bottom: 5px;
     }
 
     &__border-divider {
-        border-top: 3px dotted #4b4b7c;
+        border-top: 2px solid #9A8E8E;
     }
 }

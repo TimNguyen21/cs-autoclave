@@ -1,0 +1,57 @@
+.loads-report-summary {
+    background-color: white;
+    border-radius: 7px;
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 2px solid #9A8E8E;
+        text-align: center;
+        padding: 10px;
+
+        label {
+            font-size: 20px;
+            margin-bottom: 2px;
+            font-weight: 900;
+
+            &:nth-child(2) {
+                font-size: 16px;
+                font-style: italic;
+                font-weight: 400;
+            }
+        }
+    }
+
+    &__load {
+        padding-bottom: 10px;
+        border-bottom: 3px dotted #4b4b7c;
+        margin: 10px 50px;
+
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 5px;
+        }
+    }
+
+    &__load-item {
+        margin-bottom: 7px;
+        label {
+            font-weight: bold;
+        }
+
+        &--items-summary {
+            display: flex;
+            flex-direction: column;
+
+            textarea {
+                margin-top: 5px;;
+                resize: none;
+                border-radius: 7px;
+                padding: 7px;
+                height: auto;
+            }
+        }
+    }
+}

@@ -21,11 +21,11 @@ function LoadsReportQuery({ setSelectedQueryDate, selectedQueryDate, selectedQue
                 </select>
             </div>
             <div className='loads-report-query__button-actions'>
-                <Button label="Generate Report" 
-                        onClick={() => setLoadsReportResults(true)} 
+                <Button label="Generate Report"
+                        onClick={() => setLoadsReportResults(true)}
                         disabled={showLoadsReportResults}/>
-                {showLoadsReportResults ? <Button label="Reset" 
-                        variant='cancel' 
+                {showLoadsReportResults ? <Button label="Reset"
+                        variant='cancel'
                         onClick={() => {
                             setSelectedQueryDate('');
                             setSelectedQueryAutoclaveNumber('');
