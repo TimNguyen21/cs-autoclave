@@ -29,19 +29,28 @@ function ActiveLoads() {
             <div key={load.loadId}
                  id={load.loadId}
                  onClick={(e) => setSelectedLoad(getSelectedLoadInfo(e.currentTarget.id))}
-                 className="active-loads__load-link"
-            >Date: {formatDateMMDDYYYYWithSlash(load.date)}, Autoclave #{load.autoclaveNumber}, Load #{load.loadNumber} {`(ID: ${load.loadId})`}
+                 className='active-loads__load-link-container'
+            >*<label className="active-loads__load-link">Date: {formatDateMMDDYYYYWithSlash(load.date)}, Autoclave #{load.autoclaveNumber}, Load #{load.loadNumber} {`(ID: ${load.loadId})`}</label>
             </div>
         ));
     }
 
     return (
         <main className='active-loads'>
-            <h3>* Click on autoclave load to open load summary *</h3>
-            {renderActiveLoads()}
-            {selectedLoad ? <LoadSummary loadData={selectedLoad} /> : ''}
-            {selectedLoad ? <LoadCompletionConfirmation loadId={selectedLoad.loadId} cancelLoadConfirmation={() => setSelectedLoad(null)} /> : ''}
-            {/* {JSON.stringify(autoclaveLoads)} */}
+            <div className='active-loads__form'>
+                <h3>* Click on autoclave load to open load summary *</h3>
+                <div className={`active-loads__list ${selectedLoad ? "active-loads__list-line-divider" : ""}`}>
+                    {renderActiveLoads()}
+                </div>
+                <div className='active-loads__confirmation'>
+                    <div className='active-loads__confirmation--summary'>
+                        {selectedLoad ? <LoadSummary loadData={selectedLoad} /> : ''}
+                    </div>
+                    <div className='active-loads__confirmation--form'>
+                        {selectedLoad ? <LoadCompletionConfirmation loadId={selectedLoad.loadId} cancelLoadConfirmation={() => setSelectedLoad(null)} /> : ''}
+                    </div>
+                </div>
+            </div>
         </main>
     )
 }
