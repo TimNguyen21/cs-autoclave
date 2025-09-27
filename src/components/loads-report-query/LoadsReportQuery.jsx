@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../../components/button/Button';
 import './LoadsReportQuery.scss';
 
-function LoadsReportQuery({ 
+function LoadsReportQuery({
     setSelectedQueryDate,
     selectedQueryDate,
     selectedQueryAutoclaveNumber,

@@ -14,8 +14,8 @@ function LoadsReport() {
     const [showLoadsReportResults, setLoadsReportResults] = useState(false);
     const [validLoadsReportQuery, setValidLoadsReportQuery] = useState(true);
 
-    const renderLoadsReport = (date, autoclaveNumber) => {
-        let filteredLoads = loadsData;
+    const getFilteredLoads = (date, autoclaveNumber) => {
+        let filteredLoads;
 
         if (autoclaveNumber === 'all') {
             filteredLoads = loadsData.filter((load) => load.date === date);
@@ -23,12 +23,18 @@ function LoadsReport() {
             filteredLoads = loadsData.filter((load) => load.date === date && load.autoclaveNumber.toString() === autoclaveNumber.toString());
         }
 
+        return filteredLoads;
+    }
+
+    const renderLoadsReport = () => {
+        let filteredLoads = getFilteredLoads(selectedQueryDate, selectedQueryAutoclaveNumber);
+
         if (filteredLoads.length === 0) {
             return <div>No loads found for the selected criteria.</div>;
         }
 
-        return <LoadsReportSummary date={date}
-                                   autoclaveNumber={autoclaveNumber}
+        return <LoadsReportSummary date={selectedQueryDate}
+                                   autoclaveNumber={selectedQueryAutoclaveNumber}
                                    loadsData={filteredLoads} />
     }
 
@@ -46,10 +52,10 @@ function LoadsReport() {
                 </div>
                 {showLoadsReportResults ? (<>
                     <div className='loads-report__summary-results loads-report__border-divider'>
-                        {renderLoadsReport(selectedQueryDate, selectedQueryAutoclaveNumber)}
+                        {renderLoadsReport()}
                     </div>
                     <div className='loads-report__summary-actions'>
-                        {validLoadsReportQuery ? <Button label="Print Report" onClick={() => alert('Print Report')} /> : null}
+                        <Button label="Print Report" onClick={() => alert('Print Report')} disabled={getFilteredLoads(selectedQueryDate, selectedQueryAutoclaveNumber).length === 0}/>
                     </div>
                 </>) : null}
                 <PopupConfirmation message='There is an empty field in your report query. Please make sure all fields are filled out before generating a report.'
