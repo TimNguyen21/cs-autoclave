@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import LoadsReportQuery from '../../components/loads-report-query/LoadsReportQuery';
 import LoadsReportSummary from '../../components/loads-report-summary/LoadsReportSummary';
 import Button from '../../components/button/Button';
+import PopupConfirmation from '../../components/popup-confirmation/PopupConfirmation';
 import './LoadsReport.scss';
 
 function LoadsReport() {
@@ -11,6 +12,7 @@ function LoadsReport() {
     const [selectedQueryDate, setSelectedQueryDate] = useState('');
     const [selectedQueryAutoclaveNumber, setSelectedQueryAutoclaveNumber] = useState('');
     const [showLoadsReportResults, setLoadsReportResults] = useState(false);
+    const [validLoadsReportQuery, setValidLoadsReportQuery] = useState(true);
 
     const renderLoadsReport = (date, autoclaveNumber) => {
         let filteredLoads = loadsData;
@@ -39,16 +41,21 @@ function LoadsReport() {
                                       selectedQueryAutoclaveNumber={selectedQueryAutoclaveNumber}
                                       setSelectedQueryAutoclaveNumber={setSelectedQueryAutoclaveNumber}
                                       showLoadsReportResults={showLoadsReportResults}
-                                      setLoadsReportResults={setLoadsReportResults} />
+                                      setLoadsReportResults={setLoadsReportResults}
+                                      setValidLoadsReportQuery={setValidLoadsReportQuery} />
                 </div>
                 {showLoadsReportResults ? (<>
                     <div className='loads-report__summary-results loads-report__border-divider'>
                         {renderLoadsReport(selectedQueryDate, selectedQueryAutoclaveNumber)}
                     </div>
                     <div className='loads-report__summary-actions'>
-                        <Button label="Print Report" onClick={() => alert('Print Report')} />
+                        {validLoadsReportQuery ? <Button label="Print Report" onClick={() => alert('Print Report')} /> : null}
                     </div>
                 </>) : null}
+                <PopupConfirmation message='There is an empty field in your report query. Please make sure all fields are filled out before generating a report.'
+                                   onConfirm={() => setValidLoadsReportQuery(true)}
+                                   confirmButtonLabel='Close'
+                                   open={!validLoadsReportQuery} />
             </div>
         </main>
     )
