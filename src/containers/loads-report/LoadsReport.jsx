@@ -9,6 +9,9 @@ function LoadsReport() {
                 <div className='loads-report__summary-query'>
                     <LoadsReportQuery />
                 </div>
+                <div className='loads-report__summary-results'>
+                    loads report results
+                </div>
             </div>
         </main>
     )
