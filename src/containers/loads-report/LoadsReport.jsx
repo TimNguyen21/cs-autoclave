@@ -41,12 +41,14 @@ function LoadsReport() {
                                       showLoadsReportResults={showLoadsReportResults}
                                       setLoadsReportResults={setLoadsReportResults} />
                 </div>
-                <div className={`${showLoadsReportResults ? 'loads-report__summary-results loads-report__border-divider' : ''}`}>
-                    {showLoadsReportResults ? renderLoadsReport(selectedQueryDate, selectedQueryAutoclaveNumber) : null}
-                </div>
-                <div className={`${showLoadsReportResults ? 'loads-report__summary-actions' : ''}`}>
-                    {showLoadsReportResults ? <Button label="Print Report" onClick={() => alert('Print Report')} /> : null}
-                </div>
+                {showLoadsReportResults ? (<>
+                    <div className='loads-report__summary-results loads-report__border-divider'>
+                        {renderLoadsReport(selectedQueryDate, selectedQueryAutoclaveNumber)}
+                    </div>
+                    <div className='loads-report__summary-actions'>
+                        <Button label="Print Report" onClick={() => alert('Print Report')} />
+                    </div>
+                </>) : null}
             </div>
         </main>
     )
