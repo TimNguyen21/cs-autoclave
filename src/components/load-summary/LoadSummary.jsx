@@ -6,12 +6,12 @@ function LoadSummary({ loadData }) {
 
     return (
         <div className="load-summary">
-            <div><b>Load ID:</b> {loadId}</div>
-            <div><b>Date:</b> {formatDateMMDDYYYYWithSlash(date)}</div>
-            <div><b>Technician ID:</b> {technicianId}</div>
-            <div><b>Autoclave:</b> {autoclaveNumber}</div>
-            <div><b>Load:</b> {loadNumber}</div>
-            <div><b>Items Summary:</b> {items}</div>
+            <div className="load-summary__item"><b>Load ID:</b> {loadId}</div>
+            <div className="load-summary__item"><b>Date:</b> {formatDateMMDDYYYYWithSlash(date)}</div>
+            <div className="load-summary__item"><b>Technician ID:</b> {technicianId}</div>
+            <div className="load-summary__item"><b>Autoclave:</b> {autoclaveNumber}</div>
+            <div className="load-summary__item"><b>Load:</b> {loadNumber}</div>
+            <div className="load-summary__item"><b>Items Summary:</b> {items}</div>
         </div>
     );
 }

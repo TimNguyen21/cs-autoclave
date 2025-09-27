@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../button/Button';
 import PopupConfirmation from '../popup-confirmation/PopupConfirmation';
@@ -51,12 +51,16 @@ function LoadCompletionConfirmation({ loadId, cancelLoadConfirmation }) {
         setTechnicianSignoffId('');
     }
 
+    useEffect(() => {
+        clearConfirmationForm();
+    }, [loadId]);
+
     return (
         <div className="load-completion-confirmation">
-            <div className="load-completion-confirmation__input">
+            <div className="load-completion-confirmation__input-pass-status">
                 <label>Passed?:</label>
                 <select className={passStatusError ? 'load-completion-confirmation__input-has-error' : ''}
-                        defaultValue=""
+                        value={passStatus}
                         onChange={(e) => setPassStatus(e.target.value)}>
                     <option value=""></option>
                     <option value="yes">Yes</option>
@@ -70,6 +74,7 @@ function LoadCompletionConfirmation({ loadId, cancelLoadConfirmation }) {
                 </label>
                 <textarea className={noteError ? 'load-completion-confirmation__input-has-error' : ''}
                           placeholder="Enter notes here..."
+                          value={note}
                           onChange={(e) => setNote(e.target.value)}/>
             </div>
             <div className='load-completion-confirmation__input-tech-id'>
@@ -77,6 +82,7 @@ function LoadCompletionConfirmation({ loadId, cancelLoadConfirmation }) {
                 <input className={technicianSignoffIdError ? 'load-completion-confirmation__input-has-error' : ''}
                        type="number"
                        min='0'
+                       value={technicianSignoffId}
                        onChange={(e) => setTechnicianSignoffId(e.target.value)}/>
             </div>
             <div className='load-completion-confirmation__button-actions'>
