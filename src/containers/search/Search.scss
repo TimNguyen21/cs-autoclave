@@ -33,9 +33,10 @@
         }
     }
 
-    &__button--add-note {
+    &__button--add-note-actions {
         display: flex;
         justify-content: flex-end;
+        gap: 15px;
         padding: 0 15px 10px 15px;
         margin-bottom: 5px;
     }

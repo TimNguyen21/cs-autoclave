@@ -24,11 +24,11 @@ const autoclaveLoadsSlice = createSlice({
       }
     },
     addNote: (state, action) => {
-      const { loadId, note } = action.payload;
+      const { loadId, noteText } = action.payload;
       const load = state.autoclaveLoads.find(load => load.loadId === loadId);
       
       if (load) {
-        load.notes.push(note);
+        load.notes.push(noteText);
       }
     }
   },

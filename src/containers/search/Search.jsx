@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect, use } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '../../components/button/Button';
 import LoadsReportSummary from '../../components/loads-report-summary/LoadsReportSummary';
+import { addNote } from '../../features/autoclave-loads/autoclaveLoadsSlice';
+import { currentDateYYYYMMDD } from '../../utils/dateUtils';
 import './Search.scss';
 
 function Search() {
@@ -12,6 +14,8 @@ function Search() {
     const [showResult, setShowResult] = useState(false);
     const [noResultsMessage, setNoResultsMessage] = useState('');
     const [currentNewNote, setCurrentNewNote] = useState('');
+
+    const dispatch = useDispatch();
 
     const getLoad = (loadId) => {
         return loadsData.find((load) => load.loadId.toLowerCase() === loadId.toLowerCase());
@@ -38,6 +42,13 @@ function Search() {
         }
     }
 
+    useEffect(() => {
+        const load = getLoad(currentSearchInput);
+        if (load) {
+            setCurrentLoad(load);
+        }
+    }, [loadsData]);
+
     return (
         <main className='search'>
             <div className='search__container'>
@@ -47,8 +58,8 @@ function Search() {
                         <input type='text' value={currentSearchInput} onChange={(e) => setCurrentSearchInput(e.target.value)} />
                     </div>
                     <div className='search__button'>
-                        <Button label="Search Load" onClick={() => handleSearch()} />
-                        {showResult ? <Button label="Close"
+                        <Button label="Search Load" onClick={() => handleSearch()} disabled={showResult}/>
+                        {showResult ? <Button label="New Search"
                                               variant='cancel'
                                               onClick={() => {
                                                     setShowResult(false);
@@ -66,8 +77,20 @@ function Search() {
                     <label>Add Note:</label>
                     <textarea name="add-note" value={currentNewNote} onChange={(e) => setCurrentNewNote(e.target.value)}></textarea>
                 </div>
-                <div className='search__button--add-note'>
-                    <Button label="Add New Note" onClick={() => {}} />
+                <div className='search__button--add-note-actions'>
+                    <Button label="Close"
+                            variant='cancel'
+                            onClick={() => {
+                                setShowResult(false);
+                                setCurrentLoad(null);
+                                setCurrentSearchInput('');
+                                setCurrentNewNote('');
+                            }} />
+                    <Button label="Add New Note"
+                            onClick={() => {
+                                dispatch(addNote({ loadId: currentLoad.loadId, noteText: { 'date': currentDateYYYYMMDD(), noteText: currentNewNote } }));
+                                setCurrentNewNote('');
+                            }} />
                 </div>
                 </>) : null}
             </div>
