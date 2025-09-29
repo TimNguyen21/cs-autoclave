@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/*"
-  to = "/cs/autoclave/load-entry"
+  to = "/"
   status = 200
