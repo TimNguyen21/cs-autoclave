@@ -2,6 +2,7 @@ import { useState, useEffect, use } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '../../components/button/Button';
 import LoadsReportSummary from '../../components/loads-report-summary/LoadsReportSummary';
+import PopupConfirmation from '../../components/popup-confirmation/PopupConfirmation';
 import { addNote } from '../../features/autoclave-loads/autoclaveLoadsSlice';
 import { currentDateYYYYMMDD } from '../../utils/dateUtils';
 import './Search.scss';
@@ -14,6 +15,7 @@ function Search() {
     const [showResult, setShowResult] = useState(false);
     const [noResultsMessage, setNoResultsMessage] = useState('');
     const [currentNewNote, setCurrentNewNote] = useState('');
+    const [showAddNotePopup, setShowAddNotePopup] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -86,13 +88,17 @@ function Search() {
                                 setCurrentSearchInput('');
                                 setCurrentNewNote('');
                             }} />
-                    <Button label="Add New Note"
-                            onClick={() => {
-                                dispatch(addNote({ loadId: currentLoad.loadId, noteText: { 'date': currentDateYYYYMMDD(), noteText: currentNewNote } }));
-                                setCurrentNewNote('');
-                            }} />
+                    <Button label="Add New Note" onClick={() => setShowAddNotePopup(true)} />
                 </div>
                 </>) : null}
+                <PopupConfirmation open={showAddNotePopup}
+                                   message='Are you sure you want to add this note? Once added, it cannot be edited or deleted.'
+                                   onCancel={() => setShowAddNotePopup(false)} 
+                                   onConfirm={() => {
+                                        dispatch(addNote({ loadId: currentLoad.loadId, noteText: { 'date': currentDateYYYYMMDD(), noteText: currentNewNote } }));
+                                        setCurrentNewNote('');
+                                        setShowAddNotePopup(false);
+                                   }} />
             </div>
         </main>
     )
