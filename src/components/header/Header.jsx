@@ -4,7 +4,7 @@ function Header() {
 
     return (
         <header className='header'>
-            <img className='header__logo' src='/public/allosource-logo.png' alt='AlloSource Logo' />
+            <img className='header__logo' src='/allosource-logo.png' alt='AlloSource Logo' />
         </header>
     )
 }
