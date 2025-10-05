@@ -26,7 +26,8 @@ function HomePage() {
                     Use the navigation menu to access different features such as load entry, active loads, load reports, and search.
                 </p>
             <div className='home-page__divider'></div>
-            <h2>Documentations / User Manual</h2>
+            <div className='home-page__documentation-content'>
+            <h2><u>Documentations / User Manual</u></h2>
                 {/* Load Entry Section */}
                 <h3>Load Entry <button id='load-entry' className='home-page__toggle-button' onClick={(e) => toggleLoadEntrySection(e.target.id)}>{isLoadEntryOpen ? 'Close' : 'Open'}</button></h3>
                 <section className='home-page__toggle-section' style={{ display: isLoadEntryOpen ? 'block' : 'none' }}>
@@ -103,6 +104,7 @@ function HomePage() {
                         <li>Once a note is submitted, it cannot be changed and will be documented in the load summary</li>
                     </ul>
                 </section>
+            </div>
         </div>
     )
 }   

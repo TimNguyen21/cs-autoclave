@@ -26,6 +26,16 @@
         }
     }
 
+    &__documentation-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__toggle-section {
+        max-width: 900px;
+    }
+
     img {
         max-width: 100%;
         height: auto;
