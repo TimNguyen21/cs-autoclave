@@ -1,12 +1,30 @@
-# React + Vite
+# Central Services - Autoclave
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website: https://cs-autoclave.netlify.app/cs/autoclave/
 
-Currently, two official plugins are available:
+Project Creator: Tim Nguyen
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tech Stacks: React.js, Redux, SCSS, Netlify
 
-## Expanding the ESLint configuration
+## Project Description
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This application is designed to help manage autoclave loads efficiently and effectively.
+Previously, documenting autoclave items for tissue processing involved handwriting every item loaded into the autoclave. This manual process often led to errors—technicians frequently made typos, which required corrections by crossing out the mistake and adding the technician’s initials and date.
+
+This application reduces human errors by allowing technicians to review each item digitally before loading it into the autoclave. It also eliminates the need to write individual items manually on the QC envelope, thereby improving the overall time efficiency of autoclave load processing.
+
+## Application Goals and Autoclave Documentation Improvements
+* Reduce human writing errors
+* Improve autoclave load time by enabling digital entry instead of manual writing
+* Implement a Load Report feature that allows technicians to generate daily reports of autoclave loads
+* Include a search feature to find specific loads and add notes to them
+* Allow quick access to load summaries through search, eliminating the need to sift through hundreds of physical QC envelopes
+
+## Documentations / Screenshots
+Found on Main Page: https://cs-autoclave.netlify.app/cs/autoclave/
+
+## Set-up
+
+* clone repo
+* npm install
+* npm start
