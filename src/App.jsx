@@ -18,6 +18,7 @@ function App() {
       </div>
 
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/cs/autoclave/" element={<HomePage />} />
         <Route path="/cs/autoclave/load-entry" element={<LoadEntry />} />
         <Route path="/cs/autoclave/active-loads" element={<ActiveLoads />} />

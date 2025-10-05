@@ -9,7 +9,7 @@ function Nav() {
             <div className='nav'>
                 <div className='nav__title'>Central Services - Autoclave</div>
                 <div className='nav__links'>
-                    <Link className={`nav__link ${location.pathname === "/cs/autoclave/" ? "nav__link--active" : ""}`}
+                    <Link className={`nav__link ${location.pathname === "/cs/autoclave/" || location.pathname === "/" ? "nav__link--active" : ""}`}
                         to="/cs/autoclave/">Home</Link>
                     <Link className={`nav__link ${location.pathname === "/cs/autoclave/load-entry" ? "nav__link--active" : ""}`} 
                         to="/cs/autoclave/load-entry">Load Entry</Link>
