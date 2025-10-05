@@ -2,21 +2,18 @@ import { useState } from 'react';
 import './HomePage.scss';
 
 function HomePage() {
-    const [isLoadEntryOpen, setIsLoadEntryOpen] = useState(false);
-    const [isActiveLoadsOpen, setIsActiveLoadsOpen] = useState(false);
-    const [isLoadsReportOpen, setIsLoadsReportOpen] = useState(false);
-    const [isLoadSearchOpen, setIsLoadSearchOpen] = useState(false);
+    const [openSections, setOpenSections] = useState({
+        isLoadEntryOpen: false,
+        isActiveLoadsOpen: false,
+        isLoadsReportOpen: false,
+        isLoadSearchOpen: false,
+    });
 
-    const toggleLoadEntrySection = (documentSection) => {
-        if (documentSection === 'load-entry') {
-            setIsLoadEntryOpen(!isLoadEntryOpen);
-        } else if (documentSection === 'active-loads') {
-            setIsActiveLoadsOpen(!isActiveLoadsOpen);
-        } else if (documentSection === 'loads-report') {
-            setIsLoadsReportOpen(!isLoadsReportOpen);
-        } else if (documentSection === 'load-search') {
-            setIsLoadSearchOpen(!isLoadSearchOpen);
-        }
+    const toggleSection = (sectionName) => {
+        setOpenSections(prevState => ({
+            ...prevState,
+            [sectionName]: !prevState[sectionName],
+        }));
     };
 
     return (
@@ -29,8 +26,8 @@ function HomePage() {
             <div className='home-page__documentation-content'>
             <h2><u>Documentations / User Manual</u></h2>
                 {/* Load Entry Section */}
-                <h3>Load Entry <button id='load-entry' className='home-page__toggle-button' onClick={(e) => toggleLoadEntrySection(e.target.id)}>{isLoadEntryOpen ? 'Close' : 'Open'}</button></h3>
-                <section className='home-page__toggle-section' style={{ display: isLoadEntryOpen ? 'block' : 'none' }}>
+                <h3>Load Entry <button className='home-page__toggle-button' onClick={() => toggleSection('isLoadEntryOpen')}>{openSections.isLoadEntryOpen ? 'Close' : 'Open'}</button></h3>
+                <section className='home-page__toggle-section' style={{ display: openSections.isLoadEntryOpen ? 'block' : 'none' }}>
                     <p>* Instructions on how to enter a new load into the system *</p>
                     <img src="/load-entry-check.png" alt="Load Entry Check Form Image" />
                     <ul>
@@ -57,8 +54,8 @@ function HomePage() {
                 </section>
 
                 {/* Active Loads Section */}
-                <h3>Active Loads<button id='active-loads' className='home-page__toggle-button' onClick={(e) => toggleLoadEntrySection(e.target.id)}>{isActiveLoadsOpen ? 'Close' : 'Open'}</button></h3>
-                <section className='home-page__toggle-section' style={{ display: isActiveLoadsOpen ? 'block' : 'none' }}>
+                <h3>Active Loads<button className='home-page__toggle-button' onClick={(e) => toggleSection('isActiveLoadsOpen')}>{openSections.isActiveLoadsOpen ? 'Close' : 'Open'}</button></h3>
+                <section className='home-page__toggle-section' style={{ display: openSections.isActiveLoadsOpen ? 'block' : 'none' }}>
                         <p>* Instructions on how to confirm and manage active loads *</p>
                         <img src="/active-loads.png" alt="Active Loads Form Image" />
                         <ul>
@@ -76,8 +73,8 @@ function HomePage() {
                 </section>
 
                 {/* Loads Report Section */}
-                <h3>Loads Report<button id='loads-report' className='home-page__toggle-button' onClick={(e) => toggleLoadEntrySection(e.target.id)}>{isLoadsReportOpen ? 'Close' : 'Open'}</button></h3>
-                <section className='home-page__toggle-section' style={{ display: isLoadsReportOpen ? 'block' : 'none' }}>
+                <h3>Loads Report<button className='home-page__toggle-button' onClick={() => toggleSection('isLoadsReportOpen')}>{openSections.isLoadsReportOpen ? 'Close' : 'Open'}</button></h3>
+                <section className='home-page__toggle-section' style={{ display: openSections.isLoadsReportOpen ? 'block' : 'none' }}>
                     <p>* Instructions on how to generate a report of all loads *</p>
                     <img src="/load-report.png" alt="Loads Report Form Image" />
                     <ul>
@@ -91,8 +88,8 @@ function HomePage() {
                 </section>
 
                 {/* Load Search Section */}
-                <h3>Search<button id='load-search' className='home-page__toggle-button' onClick={(e) => toggleLoadEntrySection(e.target.id)}>{isLoadSearchOpen ? 'Close' : 'Open'}</button></h3>
-                <section className='home-page__toggle-section' style={{ display: isLoadSearchOpen ? 'block' : 'none' }}>
+                <h3>Search<button className='home-page__toggle-button' onClick={() => toggleSection('isLoadSearchOpen')}>{openSections.isLoadSearchOpen ? 'Close' : 'Open'}</button></h3>
+                <section className='home-page__toggle-section' style={{ display: openSections.isLoadSearchOpen ? 'block' : 'none' }}>
                     <p>* Instructions on how to search for specific load *</p>
                     <img src="/load-search.png" alt="Load Search Form Image" />
                     <ul>
