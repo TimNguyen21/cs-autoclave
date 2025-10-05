@@ -5,6 +5,7 @@ import LoadEntry from './containers/load-entry/LoadEntry.jsx';
 import ActiveLoads from './containers/active-loads/ActiveLoads.jsx';
 import LoadsReport from './containers/loads-report/LoadsReport.jsx';
 import Search from './containers/search/Search.jsx';
+import RedirectPage from './components/redirect-page/RedirectPage.jsx';
 import './App.scss';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/cs/autoclave/active-loads" element={<ActiveLoads />} />
         <Route path="/cs/autoclave/loads-report" element={<LoadsReport />} />
         <Route path="/cs/autoclave/search" element={<Search />} />
+        <Route path="*" element={<RedirectPage />} />
       </Routes>
     </>
   )
