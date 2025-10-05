@@ -37,6 +37,7 @@
 
     &__load-item {
         margin-bottom: 7px;
+
         label {
             font-weight: bold;
         }
@@ -46,7 +47,8 @@
             flex-direction: column;
 
             textarea {
-                margin-top: 5px;;
+                field-sizing: content;
+                margin-top: 5px;
                 resize: none;
                 border-radius: 7px;
                 padding: 7px;

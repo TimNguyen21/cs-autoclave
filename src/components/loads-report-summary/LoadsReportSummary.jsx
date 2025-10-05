@@ -30,7 +30,7 @@ function LoadsReportSummary({ date, autoclaveNumber, loadsData }) {
                     <label>Technician ID:</label> {load.technicianId}
                 </div>
                 <div className='loads-report-summary__load-item'>
-                    <label>Passed?:</label> {load.passStatus ? load.passStatus : 'In progress...'}
+                    <label>Passed?:</label> {load.passStatus ? load.passStatus.charAt(0).toUpperCase() + load.passStatus.slice(1) : 'In progress...'}
                 </div>
                 <div className='loads-report-summary__load-item'>
                     <label>Technician Signoff ID:</label> {load.technicianSignoffId ? load.technicianSignoffId : 'N/A'}
