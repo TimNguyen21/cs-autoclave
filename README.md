@@ -1,10 +1,12 @@
 # Central Services - Autoclave
 
-Website: https://cs-autoclave.netlify.app/cs/autoclave/
-
 Project Creator: Tim Nguyen
 
-Tech Stacks: React.js, Redux, SCSS, Netlify
+Website: https://cs-autoclave.netlify.app/cs/autoclave/
+
+Wireframe: [CS-Autoclave (Figma)](https://www.figma.com/design/kkb2cNMxD0XwMtD4tYt3US/CS-Load-Form?node-id=0-1&t=ArD8DO0mpwJ14nHe-0)
+
+Tech Stacks: React.js, Redux, SCSS, Netlify, Figma
 
 ## Project Description
 
