@@ -1,10 +1,14 @@
 .app {
     &__main {
         display: flex;
-        border-top: 2px dotted #22739860;
+        position: relative;
+        top: 100px;
 
         &-content {
             width: 100%;
+            overflow-y: scroll;
+            position: relative;
+            margin-left: 100px;
         }
     }
 }
