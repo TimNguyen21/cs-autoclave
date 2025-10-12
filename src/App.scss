@@ -1,8 +1,10 @@
 .app {
-
-    &__header {
+    &__main {
         display: flex;
-        border-bottom: 2px dotted #22739860;
-        padding: 5px 0;
+        border-top: 2px dotted #22739860;
+
+        &-content {
+            width: 100%;
+        }
     }
 }
