@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header.jsx';
 import Nav from './components/nav/Nav.jsx';
+import SideNav from './components/side-nav/SideNav.jsx';
 import HomePage from './containers/home-page/HomePage.jsx';
 import LoadEntry from './containers/load-entry/LoadEntry.jsx';
 import ActiveLoads from './containers/active-loads/ActiveLoads.jsx';
@@ -16,7 +17,9 @@ function App() {
         <Header />
         <Nav />
       </div>
-
+      {/* <div className='app__side-nav'>
+        <SideNav />
+      </div> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cs/autoclave/" element={<HomePage />} />
