@@ -32,7 +32,9 @@ function AddItemInput({ item, updateItem, removeItem }) {
                 onChange={(e) => updateItem(item.id, { ...item, quantity: e.target.value })}
                 disabled={itemNameHasComma}
             />
-            <button className='add-item-input__remove' onClick={() => removeItem(item.id)} tabIndex={-1}>x</button>
+            <div className='add-item-input__remove-container'>
+                <button className='add-item-input__remove' onClick={() => removeItem(item.id)} tabIndex={-1}>x</button>
+            </div>
         </div>
     );
 }
